@@ -271,6 +271,74 @@ Off-page is where you earn that.
 
 ---
 
+## 5a. Reviews & Scores at scale — without hand-rating every product
+
+Two numbers, two completely different mechanisms. Neither requires you to sit and
+score each product by hand. This is the part people get wrong.
+
+### A. The Unfiltered Score = an editorial *formula*, not an opinion
+
+At scale you do **not** rate each product. You define a **rubric once**, and code
+computes every product's score from its **objective attributes** (which come from your
+data feeds). Add a product → its score is generated automatically.
+
+```
+Unfiltered Score = weighted average of sub-scores
+sub-score = a formula over objective fields, e.g. for a credit card:
+
+  value      = normalise( reward_rate, annual_fee, waiver_spend )
+  rewards    = normalise( effective_reward_rate at a standard spend )
+  service    = normalise( acceptance, support signals )
+  transparency = normalise( count of caps / hidden conditions )   ← fewer = higher
+
+weights (published on /methodology): rewards 30 · value 30 · service 20 · transparency 20
+```
+
+- You decide the **weights and formulas once**. The engine applies them uniformly to 1
+  product or 10,000 — zero per-product manual rating.
+- This is exactly how NerdWallet / Bankrate / CardExpert produce star/score ratings: a
+  documented methodology, applied consistently. It is an **editorial** score.
+- **No user reviews are needed for this.** It just must be labelled "our editorial score",
+  never presented as a user rating.
+- The current code is already half-way there: `lib/engine.js#unfilteredScore` averages the
+  sub-scores. Today the sub-scores are hand-typed in `data/products.js`; in production they
+  should be **computed by a scoring engine** (`lib/scoring.js`) from `attrs`, with an
+  optional manual override field for edge cases.
+
+### B. User ratings (the star average) = a real review system
+
+This is the crowd number, and it needs real users — you never type it:
+
+```
+Review form on the product page
+  → DB (Postgres/CMS)
+  → moderation queue (spam / abuse / profanity filter, manual approve)
+  → verification (verified user / verified applicant — critical for trust)
+  → aggregate: average rating + review count
+  → ONLY THEN show a star average + AggregateRating JSON-LD
+```
+
+- **Until you have real reviews (your situation now): don't show a user rating at all.**
+  Show only the editorial score. That is the honest interim state.
+- Once real, moderated reviews exist, the `AggregateRating` structured data becomes
+  legitimate and SEO-positive.
+- Bootstrapping options before you have volume: post-application feedback surveys, or
+  clearly-attributed third-party review aggregates — never invented numbers.
+
+### ⚠️ The structured-data trap (fix before any SEO push)
+
+The demo's product JSON-LD emits `AggregateRating` with `ratingCount: 1` for a rating you
+authored. Google's guidelines forbid **self-serving / fabricated** review markup — this can
+trigger a "spammy structured markup" manual action and **hurt** rankings. Until real user
+reviews exist:
+
+- **Remove `AggregateRating`** from the product JSON-LD.
+- Represent the editorial verdict as a single `Review` authored by the `Organization`
+  (UnfilteredMoney) with a `Rating` — that is compliant and truthful.
+- Reinstate `AggregateRating` only when it reflects genuine, moderated user reviews.
+
+---
+
 ## 6. Compliance — do NOT skip (India)
 
 A finance site that gives recommendations sits close to regulated territory. Get this reviewed

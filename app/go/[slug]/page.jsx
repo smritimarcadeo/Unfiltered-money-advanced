@@ -90,7 +90,6 @@ export default function GoPage({ params }) {
           <Link href={`/${product.category}/${getSlug(product)}`} className="btn-ghost text-sm">
             <ArrowLeft size={14} /> Back to the X-Ray
           </Link>
-          <Link href="/methodology" className="btn-ghost text-sm">How we get paid</Link>
         </div>
       </div>
     </div>
