@@ -41,23 +41,7 @@ export default function GoPage({ params }) {
           {product.name} · Unfiltered Score {score}/100
         </p>
 
-        {/* the disclosure — the whole point of this page */}
-        <div className={`mt-6 rounded-2xl border-2 p-5 text-left ${
-          product.sponsored
-            ? 'border-amber-200 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/5'
-            : 'border-brand-200 dark:border-brand-500/30 bg-brand-50/50 dark:bg-brand-500/5'
-        }`}>
-          <h2 className="flex items-center gap-2 font-bold text-sm text-ink-900 dark:text-white">
-            <Coins size={15} className={product.sponsored ? 'text-amber-600' : 'text-brand-600'} />
-            {product.sponsored ? 'We may earn a commission on this one' : 'We earn nothing from this one'}
-          </h2>
-          <p className="text-sm text-ink-700 dark:text-ink-200 mt-2 leading-relaxed">
-            {product.sponsored
-              ? 'This is a sponsored placement. If you apply, we may be paid — and we are telling you before you click, not in a footnote afterwards. It did not change the score, the decision, or a single word of our take.'
-              : 'There is no affiliate arrangement here. We rated it and ranked it exactly the same way as everything else — which is the point.'}
-          </p>
-        </div>
-
+   
         <div className="mt-4 space-y-2 text-left">
           <p className="flex items-start gap-2 text-xs text-ink-500 dark:text-ink-400">
             <Lock size={13} className="mt-0.5 shrink-0" />
