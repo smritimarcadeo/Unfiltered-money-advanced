@@ -17,7 +17,7 @@ const finderSteps = [
   'Every product carries a set of tags — e.g. health, senior, cashless, budget-low.',
   'Every answer you give in the finder rewards products sharing its tags, with a weight based on how much that answer should matter.',
   'Your first answer (your goal) is a hard filter: ask for health cover and you will never be shown a car policy.',
-  'Match % = the points a product scored ÷ the maximum it could have scored, nudged slightly by its rating to break ties.',
+  'Match % = the points a product scored ÷ the maximum it could have scored, nudged slightly by its Unfiltered Score to break ties.',
   'Every reason shown on a result card is the actual answer that earned those points — nothing is decorative.',
 ];
 

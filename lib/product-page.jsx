@@ -47,13 +47,9 @@ export function ProductPage({ category, slug }) {
         brand: { '@type': 'Brand', name: product.provider },
         description: product.tagline,
         category: catLabel,
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: product.rating,
-          bestRating: 5,
-          ratingCount: 1,
-          reviewCount: 1,
-        },
+        // Editorial review only — a single Review authored by us (our Unfiltered
+        // Score). No AggregateRating: that implies user reviews we don't have, and
+        // self-serving AggregateRating markup is a Google-penalty risk.
         review: {
           '@type': 'Review',
           reviewRating: { '@type': 'Rating', ratingValue: score, bestRating: 100, worstRating: 0 },

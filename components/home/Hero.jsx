@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, Star } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import { STATS } from '@/data/site';
 
 export default function Hero() {
@@ -60,7 +60,7 @@ export default function Hero() {
 
             <div className="mt-8 flex items-center gap-6 text-sm text-ink-500 dark:text-ink-400">
               <span className="flex items-center gap-1.5"><ShieldCheck size={16} className="text-brand-500" /> 100% unbiased</span>
-              <span className="flex items-center gap-1.5"><Star size={16} className="text-amber-400" fill="currentColor" /> Honest pros & cons</span>
+              <span className="flex items-center gap-1.5"><Sparkles size={16} className="text-brand-500" /> Honest pros & cons</span>
             </div>
           </div>
 
@@ -99,9 +99,9 @@ export default function Hero() {
               </div>
             </div>
             <div className="absolute -bottom-4 -left-4 card-surface px-4 py-3 shadow-xl hidden sm:flex items-center gap-2">
-              <Star size={16} className="text-amber-400" fill="currentColor" />
-              <span className="text-sm font-bold text-ink-800 dark:text-white">4.6</span>
-              <span className="text-xs text-ink-400">avg rating</span>
+              <ShieldCheck size={16} className="text-brand-500" />
+              <span className="text-sm font-bold text-ink-800 dark:text-white">100%</span>
+              <span className="text-xs text-ink-400">unbiased</span>
             </div>
           </motion.div>
         </div>

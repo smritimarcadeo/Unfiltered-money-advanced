@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Heart, Scale, Star, Check, ArrowRight, Sparkles, UserCheck, UserX, ScanLine } from 'lucide-react';
+import { Heart, Scale, Check, ArrowRight, Sparkles, UserCheck, UserX, ScanLine } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { cx, matchTone } from '@/lib/format';
 import { checkEligibility } from '@/lib/eligibility';
@@ -62,9 +62,6 @@ export default function ProductCard({ product, index = 0, showMatch = false }) {
             <Sparkles size={12} /> {product.matchPct}% · {tone.label}
           </span>
         )}
-        <span className="chip bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300">
-          <Star size={12} fill="currentColor" /> {product.rating}
-        </span>
         <span className="chip bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300 truncate max-w-[60%]">
           Best for: {product.bestFor}
         </span>

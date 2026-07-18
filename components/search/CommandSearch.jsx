@@ -3,11 +3,11 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Search, CornerDownLeft, Star } from 'lucide-react';
+import { Search, CornerDownLeft } from 'lucide-react';
 import { PRODUCTS } from '@/data/products';
 import { BLOGS } from '@/data/blog';
 import { GLOSSARY } from '@/data/glossary';
-import { getSlug } from '@/lib/engine';
+import { getSlug, unfilteredScore } from '@/lib/engine';
 import { cx } from '@/lib/format';
 
 // One flat, searchable index over everything on the site.
@@ -17,7 +17,7 @@ function buildIndex() {
   for (const p of PRODUCTS) {
     items.push({
       kind: 'Product', label: p.name, hint: `${p.provider} · ${p.bestFor}`,
-      href: `/${p.category}/${getSlug(p)}`, badge: p.rating,
+      href: `/${p.category}/${getSlug(p)}`, badge: `${unfilteredScore(p)}/100`,
       terms: `${p.name} ${p.provider} ${p.bestFor} ${p.subtype} ${p.tags.join(' ')}`,
     });
   }
@@ -163,8 +163,8 @@ export default function CommandSearch() {
                         <span className="block text-xs text-ink-400 truncate">{r.hint}</span>
                       </span>
                       {r.badge && (
-                        <span className="flex items-center gap-1 text-xs font-bold text-amber-500 shrink-0">
-                          <Star size={11} fill="currentColor" /> {r.badge}
+                        <span className="chip bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300 shrink-0 !text-[10px]">
+                          {r.badge}
                         </span>
                       )}
                       {i === active && <CornerDownLeft size={14} className="text-ink-400 shrink-0" />}

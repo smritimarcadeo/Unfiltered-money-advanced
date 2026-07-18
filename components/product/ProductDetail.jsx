@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  X, Star, Check, Minus, Heart, Scale, ArrowRight, ShieldCheck, Info,
+  X, Check, Minus, Heart, Scale, ArrowRight, ShieldCheck, Info,
   Quote, Ban, CalendarClock, UserCheck, UserX, ChevronRight,
 } from 'lucide-react';
 import { useStore } from '@/lib/store';
@@ -82,7 +82,6 @@ export default function ProductDetail() {
 
           <div className="p-5 sm:p-6 space-y-6">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="chip bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300"><Star size={12} fill="currentColor" /> {product.rating}</span>
               {product.matchPct != null && (
                 <span className="chip bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">{product.matchPct}% match</span>
               )}
@@ -203,7 +202,6 @@ export default function ProductDetail() {
                         <p className="text-sm font-bold text-ink-900 dark:text-white truncate">{s.name}</p>
                         <p className="text-xs text-ink-400 truncate">{s.bestFor}</p>
                       </div>
-                      <span className="chip bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300 shrink-0"><Star size={11} fill="currentColor" /> {s.rating}</span>
                     </button>
                   ))}
                 </div>

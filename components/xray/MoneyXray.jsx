@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  Star, Check, Minus, Heart, Scale, ArrowRight, ShieldCheck, Info, Quote, Ban,
+  Check, Minus, Heart, Scale, ArrowRight, ShieldCheck, Info, Quote, Ban,
   CalendarClock, EyeOff, TrendingUp, TrendingDown, Circle, ChevronRight, Sparkles,
   UserCheck, AlertTriangle, ArrowLeft,
 } from 'lucide-react';
@@ -95,7 +95,6 @@ export default function MoneyXray({ product }) {
               )}
 
               <div className="flex flex-wrap items-center gap-2 mt-5">
-                <span className="chip bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300"><Star size={12} fill="currentColor" /> {product.rating}</span>
                 <span className="chip bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">Best for: {product.bestFor}</span>
                 {product.badges?.map((b) => (
                   <span key={b} className="chip bg-ink-100 dark:bg-ink-800 text-ink-600 dark:text-ink-300">{b}</span>
@@ -300,7 +299,7 @@ export default function MoneyXray({ product }) {
                   className="rounded-2xl border border-ink-200 dark:border-ink-700 p-4 hover:border-brand-400 transition">
                   <div className="flex items-center gap-2.5">
                     <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand-600 text-white text-xs font-bold shrink-0">{s.logo}</span>
-                    <span className="chip bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300 ml-auto"><Star size={11} fill="currentColor" /> {s.rating}</span>
+                    <span className="chip bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300 ml-auto">{unfilteredScore(s)}/100</span>
                   </div>
                   <p className="text-sm font-bold text-ink-900 dark:text-white mt-3 leading-snug">{s.name}</p>
                   <p className="text-xs text-ink-400 mt-1">{s.bestFor}</p>

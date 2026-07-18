@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, X, Trophy, Star, Check, Scale, ChevronRight, Info, Gauge } from 'lucide-react';
+import { Plus, X, Trophy, Check, Scale, ChevronRight, Info, Gauge } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { PRODUCTS, getById, CATEGORIES } from '@/data/products';
 import { getXray, SPEND_CATEGORIES } from '@/data/xray';
@@ -16,7 +16,6 @@ function buildRows(items, values) {
   const rows = [
     { key: 'score', label: 'Unfiltered Score', get: (p) => unfilteredScore(p), best: 'max', render: (v) => `${v}/100` },
     { key: 'decision', label: 'Our decision', get: (p) => getXray(p.id)?.decision?.call || '—' },
-    { key: 'rating', label: 'Rating', get: (p) => p.rating, best: 'max' },
     { key: 'bestFor', label: 'Best for', get: (p) => p.bestFor },
   ];
 
@@ -179,7 +178,6 @@ export default function CompareWorkspace() {
                           className={cx('inline-flex items-center gap-1 font-semibold',
                             row.wrap ? 'text-xs leading-relaxed' : 'text-sm',
                             p.id === bestId ? 'text-brand-700 dark:text-brand-300' : 'text-ink-700 dark:text-ink-200')}>
-                          {row.key === 'rating' && <Star size={12} fill="currentColor" className="text-amber-400" />}
                           {val}
                           {p.id === bestId && !row.wrap && <Check size={13} className="text-brand-500" />}
                         </motion.span>

@@ -4,8 +4,7 @@ import { Search, X, SlidersHorizontal } from 'lucide-react';
 import { cx } from '@/lib/format';
 
 const SORTS = [
-  { id: 'match', label: 'Best match' },
-  { id: 'rating', label: 'Top rated' },
+  { id: 'score', label: 'Top score' },
   { id: 'price-low', label: 'Price: low to high' },
   { id: 'price-high', label: 'Price: high to low' },
 ];

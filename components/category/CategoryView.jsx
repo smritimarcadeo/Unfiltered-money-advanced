@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Flame } from 'lucide-react';
 import { getByCategory, getCategory, getFeatured } from '@/data/products';
+import { unfilteredScore } from '@/lib/engine';
 import FilterBar from '@/components/product/FilterBar';
 import ProductGrid from '@/components/product/ProductGrid';
 import EligibilityChecker from '@/components/product/EligibilityChecker';
@@ -21,7 +22,7 @@ export default function CategoryView({ category }) {
 
   const [subtype, setSubtype] = useState('all');
   const [search, setSearch] = useState('');
-  const [sort, setSort] = useState('rating');
+  const [sort, setSort] = useState('score');
   const [eligibleOnly, setEligibleOnly] = useState(false);
 
   // How many of this category the user actually qualifies for.
@@ -41,10 +42,9 @@ export default function CategoryView({ category }) {
       return true;
     });
     list = [...list].sort((a, b) => {
-      if (sort === 'rating') return b.rating - a.rating;
       if (sort === 'price-low') return (a.attrs.price || 0) - (b.attrs.price || 0);
       if (sort === 'price-high') return (b.attrs.price || 0) - (a.attrs.price || 0);
-      return b.rating - a.rating; // 'match' fallback
+      return unfilteredScore(b) - unfilteredScore(a); // 'score' (default)
     });
     return list;
   }, [all, subtype, search, sort, eligibleOnly, profile]);
