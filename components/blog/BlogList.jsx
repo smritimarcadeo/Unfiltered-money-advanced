@@ -50,14 +50,7 @@ export default function BlogList() {
         </div>
       </div>
 
-      {/* section header */}
-      <div className="flex items-center gap-3 pt-8 pb-5">
-      
-        <div className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
-        {isFiltered && (
-          <button onClick={() => { setCat('All'); setSearch(''); }} className="text-xs font-semibold text-brand-600 hover:underline shrink-0">Clear</button>
-        )}
-      </div>
+     
 
       {/* grid */}
       <AnimatePresence mode="wait">
