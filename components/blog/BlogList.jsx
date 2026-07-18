@@ -52,9 +52,7 @@ export default function BlogList() {
 
       {/* section header */}
       <div className="flex items-center gap-3 pt-8 pb-5">
-        <h2 className="font-display font-extrabold text-ink-900 dark:text-white whitespace-nowrap">
-          {isFiltered ? `Results (${filtered.length})` : 'Latest Articles'}
-        </h2>
+      
         <div className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
         {isFiltered && (
           <button onClick={() => { setCat('All'); setSearch(''); }} className="text-xs font-semibold text-brand-600 hover:underline shrink-0">Clear</button>
